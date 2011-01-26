@@ -149,9 +149,9 @@ ipython()
 ipython()
 code = """
 from pyo import Map
-m = Map(20., 20000., 'log')
-print "m.get(.5)=%s" % m.get(.5)
-print "m.set(632.455532034)=%s" % m.set(632.455532034)
+map = Map(20., 20000., 'log')
+print "map.get(.5)=%s" % m.get(.5)
+print "map.set(632.455532034)=%s" % m.set(632.455532034)
 """
 print """
 Now we're going to import Map, http://www.iact.umontreal.ca/pyo/manual/Map.html
