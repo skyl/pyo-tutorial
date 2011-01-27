@@ -76,9 +76,7 @@ print """
 wav, env, met, amp, pit and out are now in the namespace for investigation.
 Some things that you can do with these objects:
 
-
 ``out`` -- Output
-
 to stop and start the audible sound, run::
 
 out.stop()
@@ -86,7 +84,6 @@ out.out()
 
 
 ``met`` -- Metronome
-
 To change the tempo of the Metro, for instance::
 
 met.setTime(.5)
@@ -94,7 +91,6 @@ met.setTime(met.time/3)
 
 
 ``env`` -- Envelope
-
 Change the shape of the envelope::
 
 env.replace([(0,0), (100,1), (500,.3), (1000,0)])
@@ -104,7 +100,6 @@ env.replace([(0,0), (199,1), (200,.3), (210,0)])
 
 
 ``wav`` -- Wave
-
 Change the order of the SquareWave table (number of harmonics)::
 
 wav.setOrder(1)
@@ -117,7 +112,6 @@ wav.setSize(wav.size+1000)
 
 
 ``amp`` -- Amplitude
-
 Messing with the ``amp`` is messed up with ipython.
 Don't use the help or tab completion.  Why?
 You can change the duration of the amp.
@@ -140,7 +134,6 @@ amp.setTable(env)
 
 
 ``pit`` -- Pitch
-
 (Introspecting pit in ipython while the sound is playing seems to be a problem)
 Change the random distribution of the TrigXnoiseMidi object::
 
@@ -196,6 +189,11 @@ The scales are "lin" for linear and "log" for logarithmic.
 exec(code)
 
 
+print """
+
+
+press ctrl+d to exit"""
+s.stop()
 ipython()
 
 
@@ -203,7 +201,6 @@ ipython()
 
 
 
-print "press ctrl+c to exit"
 
 
 
