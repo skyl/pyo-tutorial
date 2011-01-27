@@ -35,16 +35,17 @@ print """
 Press ctrl+d to begin.
 ####################################
 """
-
-
 ipython()
+
+
 code = """
-from pyo import Server
+from pyo import *
 s = Server().boot()
 s.start()
 """
 print """
 We're are about to import everything from pyo and start a server, running::
+
 
 %s
 """ % code
@@ -55,9 +56,9 @@ Now you have "s" as a variable in your scope,
 referencing a pyo Server object with rational defaults.  Play around.
 (ctrl+d to continue)
 """
-
-
 ipython()
+
+
 code = """
 from pyo import SquareTable, CosTable, Metro, TrigEnv, TrigXnoiseMidi, Osc
 wav = SquareTable()
@@ -151,30 +152,112 @@ To stop the sound, run ``out.stop()``.
 wav, env, met, amp, pit and out are now in the namespace for investigation.
 (ctrl+d to continue)
 """
-
-
-#ipython()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ipython()
+
+
+out.stop()
+code = """
+sine = Sine(freq=[110,440], phase=0, mul=0.01, add=0).out()
+"""
+print """
+Let's play with sine waves:
+Following on at: http://code.google.com/p/pyo/wiki/Introduction
+
+%s
+
+Stop the sine with sine.stop().
+Start it again with sine.out().
+""" % code
+exec(code)
+ipython()
+
+
+code = """
+sine.freq = [110,111]
+"""
+print """
+The freq argument is in [L, R].
+Instead of sine.setFreq([110,111]) - style as above,
+we can use setters to set the attrs of our objects::
+
+%s
+
+""" % code
+exec(code)
+ipython()
+
+
+code = """
+mod = Sine(freq=55/32., mul=.5)
+sine.mul = mod
+"""
+print """
+We can apply an lfo modulator to the freq and/or the mul of a soundwave.
+
+%s
+
+""" % code
+exec(code)
+ipython()
+
+
+code = """
+mod.freq = 55/16.
+"""
+print """
+The we can change the attributes of the modulator::
+
+%s
+
+try::
+
+mod.freq = 55/8.
+mod.freq = 55/4.
+mod.freq = 55/2.
+...
+and others, try changing the mul (careful, can get loud):
+
+mod.mul = 2
+
+""" % code
+exec(code)
+ipython()
+
+
+code = """
+modMulmod = Sine(55/16., mul=.5)
+mod.mul = modMulmod
+"""
+print """
+We can go on and put a modulator on the modulator::
+
+%s
+
+Then, we can alter the attrs of modMulmod.
+try::
+
+modMulmod.freq = 55/256. # etc
+
+
+""" % code
+exec(code)
+ipython()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 code = """
 from pyo import Map
 map = Map(20., 20000., 'log')
